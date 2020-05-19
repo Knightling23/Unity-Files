@@ -1,0 +1,85 @@
+sing System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class playerbehavior : MonoBehaviour
+{
+    public AudioClip TokenBasic;
+    public AudioClip TokenAudio23;
+    
+      // The player's score.
+    Text text;                      // Reference to the Text component.
+     // The player's score.
+                          // Reference to the Text component.
+
+
+    AudioSource AudioS;
+    AudioSource AudioB1;
+    
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        //text = GetComponent<Text>();
+        // Reset the score.
+
+       
+        AudioS = GetComponent<AudioSource>();
+
+    }
+   
+
+    void Awake()
+    {
+        // Set up the reference.
+        text = GetComponent<Text>();
+
+        // Reset the score.
+
+    }
+    // Update is called once per frame
+    void Update()
+    {
+       
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name == "Token")
+        {
+
+            AudioS.PlayOneShot(TokenBasic, 1);
+            KeepScore.Score += 1;
+            
+            Destroy(col.gameObject);
+
+
+
+        }
+
+        if (col.gameObject.name == "AudioToken(1)")
+        {
+
+            AudioS.PlayOneShot(TokenAudio23, 1);
+            Destroy(col.gameObject);
+        }
+
+        if (col.gameObject.name == "elevator" && KeepScore.Score == 90)
+        {
+
+            SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
+
+        }
+        else
+        {
+
+
+        }
+
+    }
+
+
+}
